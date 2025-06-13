@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+ai-dogbreed-env/
+.env/
+data/
+models/
+.ipynb_checkpoints/
+.vscode/
+.DS_Store
+Thumbs.db

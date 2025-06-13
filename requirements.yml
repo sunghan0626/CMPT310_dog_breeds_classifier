@@ -1,0 +1,14 @@
+name: dogbreed
+channels:
+  - defaults
+  - pytorch
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - matplotlib
+  - opencv
+  - jupyter
+  - pytorch
+  - torchvision
+  - torchaudio
