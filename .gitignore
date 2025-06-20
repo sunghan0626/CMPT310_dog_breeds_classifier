@@ -1,9 +1,8 @@
 __pycache__/
 *.pyc
-ai-dogbreed-env/
 .env/
-models/
 .ipynb_checkpoints/
 .vscode/
 .DS_Store
 Thumbs.db
+data/Processed/
