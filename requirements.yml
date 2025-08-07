@@ -1,5 +1,6 @@
 name: dogbreed
 channels:
+  - pytorch
   - defaults
 dependencies:
   - python=3.10
@@ -15,4 +16,8 @@ dependencies:
       - torch==2.7.1+cu126
       - torchvision==0.18.1+cu126
       - torchaudio==2.7.1
+      - scikit-learn
+      - pillow
+      - streamlit
+      - altair
       - --extra-index-url https://download.pytorch.org/whl/cu126

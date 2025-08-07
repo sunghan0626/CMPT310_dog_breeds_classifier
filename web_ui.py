@@ -15,7 +15,6 @@ DATA_DIR = "data/Processed/train"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 CLASS_NAMES = sorted(os.listdir(DATA_DIR))
 
-# Convert 'n02112137-chow' or 'standard_poodle' → 'Chow' or 'Standard Poodle'
 def prettify(name):
     breed_only = name.split('-')[-1]
     return breed_only.replace('_', ' ').title()
@@ -40,7 +39,7 @@ model = get_resnet_model(len(CLASS_NAMES)).to(DEVICE)
 model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
 model.eval()
 
-#  PREDICTION 
+# ====== PREDICTION ======
 def predict_with_confidence(image):
     img_tensor = transform(image).unsqueeze(0).to(DEVICE)
     with torch.no_grad():
@@ -49,7 +48,7 @@ def predict_with_confidence(image):
     top5_idx = probs.argsort()[-5:][::-1]
     return [(BREED_NAMES[i], float(probs[i])) for i in top5_idx]
 
-#  CUSTOM RESTART BUTTON 
+# ====== CUSTOM RESTART BUTTON ======
 custom_button = """
 <div style='text-align:center; margin-top: 30px;'>
     <form action="">
@@ -83,26 +82,23 @@ st.markdown(
 if "uploaded_image" not in st.session_state:
     st.session_state.uploaded_image = None
 
-# File uploader only if no image uploaded
 if st.session_state.uploaded_image is None:
     uploaded = st.file_uploader("Upload a dog image to predict its breed", type=["jpg", "jpeg", "png"])
     if uploaded:
         st.session_state.uploaded_image = uploaded
         st.rerun()
 
-# Show prediction UI
 if st.session_state.uploaded_image is not None:
     try:
         img = Image.open(st.session_state.uploaded_image).convert("RGB")
         st.image(img, caption="Uploaded Image", use_column_width=True)
 
-        with st.spinner(" Classifying..."):
+        with st.spinner("Classifying..."):
             results = predict_with_confidence(img)
 
         breed, confidence = results[0]
-        st.success(f" **Predicted Breed:** {breed} ({confidence*100:.2f}%)")
+        st.success(f"**Predicted Breed:** {breed} ({confidence*100:.2f}%)")
 
-        # Chart
         df = pd.DataFrame(results, columns=["Breed", "Confidence"])
         chart = (
             alt.Chart(df)
@@ -115,27 +111,27 @@ if st.session_state.uploaded_image is not None:
         )
         st.altair_chart(chart, use_container_width=True)
 
-        # Restart button
         st.markdown(custom_button, unsafe_allow_html=True)
 
     except UnidentifiedImageError:
-        st.error(" Cannot read the image file. Make sure it's a valid image format (JPG, JPEG, PNG).")
+        st.error("Cannot read the image file. Please upload a valid JPG, JPEG, or PNG image.")
         st.markdown(custom_button, unsafe_allow_html=True)
 
     except Exception as e:
-        st.error(f" Error processing image: {e}")
+        st.error(f"Unexpected error: {e}")
         st.markdown(custom_button, unsafe_allow_html=True)
 
-# Reset state when button clicked (via query param) 
+# Reset state when button clicked (via query param)
 if st.query_params:
     st.session_state.uploaded_image = None
     st.experimental_rerun()
 
+# ====== FOOTER ======
 st.markdown("""
 <hr>
 <div style='text-align: center; font-size: 16px; color: #CCCCCC;'>
     <p>
-        Developed by Yein Hwang, Sung Han, and Cody Huang (CMPT 310 Group 34.<br>
+        Developed by Yein Hwang, Sung Han, and Cody Huang (CMPT 310 Group 34).<br>
         This application is an AI-powered dog breed classifier that analyzes a photo of a dog and identifies its breed based on visual features.<br><br>
         Simply upload an image, and our model will predict the most likely breed along with a confidence score.<br>
         Give it a try and see how accurately it performs!
