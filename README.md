@@ -39,9 +39,7 @@ You can open **main.ipynb** in **Jupyter Notebook** or **VS Code** and run cells
 ## 2. Repository Structure
 ```
 repository/
-├── data/
-│   ├── stanford_dogs/Images/     # Raw dataset (class folders with JPGs)
-│   └── Processed/                 # Created by main.ipynb (train/val/test splits)
+├── data/                          # Download the Stanford Dogs Dataset and extract the images into this folder
 ├── main.ipynb                     # Full training + evaluation pipeline
 ├── prediction.py                  # CLI single-image prediction
 ├── web_ui.py                      # Streamlit web demo (top-5 with confidences)
@@ -71,7 +69,11 @@ conda activate dogbreed
 ## 4. Usage Options
 
 ### **Option 1 – Use the pre-trained model with the web demo**
-If you just want to try the classifier:
+If you just want to try the classifier: <br>
+**Download** the [Stanford Dogs dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/) Images(757 MB) and extract the compressed folder after opening Images.tar so that the Images folder is inside the data/folder. Your directory should look like this:
+   ```
+   data/Images/
+   ```
 ```bash
 streamlit run web_ui.py
 ```
@@ -81,9 +83,9 @@ streamlit run web_ui.py
 ---
 
 ### **Option 2 – Reproduce full training & evaluation**
-1. **Download** the [Stanford Dogs dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/) and place it at:
+1. **Download** the [Stanford Dogs dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/) Images(757 MB) and extract the compressed folder after opening Images.tar so that the Images folder is inside the data/folder. Your directory should look like this:
    ```
-   data/stanford_dogs/Images/
+   data/Images/
    ```
 2. **Open** `main.ipynb` in Jupyter Notebook or VS Code.
 3. **Run cells** in order (or click "Run All").
