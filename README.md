@@ -70,7 +70,7 @@ conda activate dogbreed
 
 ### **Option 1 – Use the pre-trained model with the web demo**
 If you just want to try the classifier: <br>
-**Download** the [Stanford Dogs dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/) Images(757 MB) and extract the compressed folder after opening Images.tar so that the Images folder is inside the data/folder. Your directory should look like this:
+**Download** the [Stanford Dogs dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/) Images(757 MB) and extract (using Winrar) the compressed folder after opening Images.tar so that the Images folder is inside the data/folder. Your directory should look like this:
    ```
    data/Images/
    ```
@@ -83,7 +83,7 @@ streamlit run web_ui.py
 ---
 
 ### **Option 2 – Reproduce full training & evaluation**
-1. **Download** the [Stanford Dogs dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/) Images(757 MB) and extract the compressed folder after opening Images.tar so that the Images folder is inside the data/folder. Your directory should look like this:
+1. **Download** the [Stanford Dogs dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/) Images(757 MB) and extract (using Winrar) the compressed folder after opening Images.tar so that the Images folder is inside the data/folder. Your directory should look like this:
    ```
    data/Images/
    ```
