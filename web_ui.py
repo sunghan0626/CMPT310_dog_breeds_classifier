@@ -11,7 +11,7 @@ import altair as alt
 
 # ====== CONFIG ======
 MODEL_PATH = "best_model.pth"
-DATA_DIR = "data/Processed/train"
+DATA_DIR = "data/Images"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 CLASS_NAMES = sorted(os.listdir(DATA_DIR))
 
